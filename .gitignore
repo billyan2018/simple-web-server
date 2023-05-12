@@ -1,8 +1,6 @@
 .idea
 .gradle
 gradle
-gradlew
-gradle.bat
 out
 **/build/
 !src/**/build/
