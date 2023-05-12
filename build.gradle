@@ -9,12 +9,15 @@ version '1.0'
 sourceCompatibility = 8
 
 repositories {
-    mavenCentral()
+
+    maven {
+        url "https://jcenter.bintray.com"
+    }
+
 }
 
 tasks.withType(Test) {
     useJUnitPlatform()
-    jvmArgs '--enable-preview'
 }
 
 dependencies {
@@ -28,17 +31,39 @@ dependencies {
 
 test {
     useJUnitPlatform()
-
-    jacoco {
-        enabled = System.getenv("CI") == "true"
-    }
 }
 
-jacocoTestReport {
+jacoco {
+    toolVersion '0.8.0'
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+
+tasks.create(name: "testCoverage", type: JacocoReport, dependsOn: "test") {
+
+    group = "Reporting"
+    description = "Generate Jacoco coverage reports for the test build."
+
     reports {
-        xml.enabled true
-        xml.destination file("${buildDir}/jacocoXml")
-        csv.enabled false
-        html.enabled false
+        html.enabled = true
+        xml.enabled = true
     }
+
+    def excludes = [
+            '**/*Test*.*',
+            '**/actions/*.*',
+    ]
+
+    def javaClasses = fileTree(dir: "${buildDir}/classes/java/main", excludes: excludes)
+    classDirectories.from = files([javaClasses])
+
+    sourceDirectories.from = files([
+            "$project.projectDir/src/main/java",
+
+    ])
+
+    executionData.from = files("${project.buildDir}/jacoco/test.exec")
 }
