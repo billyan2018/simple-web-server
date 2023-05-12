@@ -6,10 +6,10 @@ import java.util.List;
 
 
 /**
- * HttpRequest class parses the HTTP Request Line (method, URI, version) 
+ * Request class parses the HTTP Request Line (method, URI, version)
  * and Headers http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html
  */
-public class HttpRequest {
+public class Request {
 
 	private final List<String> headers = new ArrayList<>();
 
@@ -31,14 +31,14 @@ public class HttpRequest {
 		return new ArrayList<>(headers);
 	}
 
-	public HttpRequest(InputStream is) throws IOException {
+	public Request(InputStream is) throws IOException {
 		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-			String str = reader.readLine();
-			parseRequestLine(str);
+			String contentLine = reader.readLine();
+			parseRequestLine(contentLine);
 
-			while (!"".equals(str)) {
-				str = reader.readLine();
-				addToHeader(str);
+			while (!"".equals(contentLine)) {
+				contentLine = reader.readLine();
+				addToHeader(contentLine);
 			}
 		}
 	}

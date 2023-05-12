@@ -7,9 +7,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpResponse {
+public class Response {
 
-    private static final Logger log = LogManager.getLogger(HttpResponse.class);
+    private static final Logger log = LogManager.getLogger(Response.class);
 
     public static final String VERSION = "HTTP/1.0";
 
@@ -21,7 +21,7 @@ public class HttpResponse {
         return new ArrayList<>(headers);
     }
 
-    public HttpResponse(HttpRequest req) {
+    public Response(Request req) {
 
         switch (req.getMethod()) {
             case HEAD:
@@ -51,7 +51,7 @@ public class HttpResponse {
                         fillResponse(result.toString());
                     } else if (file.exists()) {
                         fillHeaders(Status._200);
-                        setContentType(req.getUri(), headers);
+                        setContentType(req.getUri());
                         fillResponse(getBytes(file));
                     } else {
                         log.info("File not found: %s", req.getUri());
@@ -90,9 +90,9 @@ public class HttpResponse {
     }
 
     private void fillHeaders(Status status) {
-        headers.add(HttpResponse.VERSION + " " + status.toString());
+        headers.add(Response.VERSION + " " + status.toString());
         headers.add("Connection: close");
-        headers.add("Server: SimpleWebServer");
+        headers.add("Server: simple-web-server");
     }
 
     private void fillResponse(String response) {
@@ -117,10 +117,10 @@ public class HttpResponse {
 		}
     }
 
-    private void setContentType(String uri, List<String> list) {
+    private void setContentType(String uri) {
         try {
             String ext = uri.substring(uri.indexOf(".") + 1);
-            list.add(ContentType.valueOf(ext.toUpperCase()).toString());
+            headers.add(ContentType.valueOf(ext.toUpperCase()).toString());
         } catch (RuntimeException e) {
             log.error("ContentType not found: ", e);
         }

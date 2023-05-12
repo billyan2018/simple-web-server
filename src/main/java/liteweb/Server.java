@@ -5,8 +5,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.TimeUnit;
 
-import liteweb.http.HttpRequest;
-import liteweb.http.HttpResponse;
+import liteweb.http.Request;
+import liteweb.http.Response;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -34,8 +34,8 @@ public class Server {
 
 	private static void handle(ServerSocket socket) {
 			try (Socket clientSocket = socket.accept()){
-				HttpRequest req = new HttpRequest(clientSocket.getInputStream());
-				HttpResponse res = new HttpResponse(req);
+				Request req = new Request(clientSocket.getInputStream());
+				Response res = new Response(req);
 				res.write(clientSocket.getOutputStream());
 				socket.close();
 			} catch (IOException e) {

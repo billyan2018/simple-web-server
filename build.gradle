@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-
+    id 'jacoco'
 }
 
 group 'liteweb'
@@ -24,4 +24,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.6.3'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+test {
+    useJUnitPlatform()
+
+    jacoco {
+        enabled = System.getenv("CI") == "true"
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/jacocoXml")
+        csv.enabled false
+        html.enabled false
+    }
 }
