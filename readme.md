@@ -1,4 +1,6 @@
 # Simple Web Server
+![Branches](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/billyan2018/simple-web-server/dev/.github/badges/branches.json)
+![Coverage](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/billyan2018/simple-web-server/dev/.github/badges/jacoco.json)
 
 A simplex HTTP 1.0 Server implemented in Java for educational
 purposes based on W3C specifications (http://www.w3.org/Protocols/):

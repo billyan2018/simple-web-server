@@ -17,11 +17,8 @@ jobs:
           chmod +x gradlew
           ./gradlew testCoverage
 
-      - name: Add coverage to PR
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.3
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
         with:
-          paths: ${{ github.workspace }}/build/reports/jacoco/testCoverage/testCoverage.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 40
-          min-coverage-changed-files: 60
+          generate-branches-badge: true
+          jacoco-csv-file: build/reports/jacoco/testCoverage/testCoverage.csv
