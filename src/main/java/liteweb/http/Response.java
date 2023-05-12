@@ -122,7 +122,7 @@ public class Response {
             String ext = uri.substring(uri.indexOf(".") + 1);
             headers.add(ContentType.valueOf(ext.toUpperCase()).toString());
         } catch (RuntimeException e) {
-            log.error("ContentType not found: ", e);
+            log.error("ContentType not found:", e);
         }
     }
 }
