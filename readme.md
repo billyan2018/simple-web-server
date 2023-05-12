@@ -1,4 +1,7 @@
 # Simple Web Server
+![Coverage](.github/badges/jacoco.svg)
+
+![Branches](.github/badges/branches.svg)
 
 A simplex HTTP 1.0 Server implemented in Java for educational
 purposes based on W3C specifications (http://www.w3.org/Protocols/):

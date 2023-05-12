@@ -1,0 +1,43 @@
+name: Measure coverage
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the changed files back to the repository.
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      - name: Run Coverage
+        run: |
+          chmod +x gradlew
+          ./gradlew testCoverage
+          ls -l
+          more build/reports/jacoco/testCoverage/testCoverage.csv
+
+      - name: Generate JaCoCo Badge
+        uses: cicirello/jacoco-badge-generator@v2
+        with:
+          generate-branches-badge: true
+          jacoco-csv-file: build/reports/jacoco/testCoverage/testCoverage.csv
+
+      - name: Log coverage percentage
+        run: |
+                echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
+                echo "branch coverage = ${{ steps.jacoco.outputs.branches }}"
+      - uses: stefanzweifel/git-auto-commit-action@v4
+      #- name: Commit and push the badge (if it changed)
+      #  uses: EndBug/add-and-commit@v7
+      #  with:
+      #    default_author: github_actions
+      #    message: 'commit badge'
+      #    add: '*.svg'

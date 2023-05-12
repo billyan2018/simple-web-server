@@ -48,8 +48,9 @@ tasks.create(name: "testCoverage", type: JacocoReport, dependsOn: "test") {
     description = "Generate Jacoco coverage reports for the test build."
 
     reports {
-        html.enabled = true
-        xml.enabled = true
+        html.enabled( true)
+        xml.enabled(true)
+        csv.enabled(true)
     }
 
     def excludes = [
