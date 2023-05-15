@@ -35,7 +35,7 @@ public class Response {
                     if (file.isDirectory()) {
                         fillHeaders(Status._200);
 
-                        headers.add(ContentType.HTML.toString());
+                        headers.add(ContentType.of("HTML"));
                         StringBuilder result = new StringBuilder("<html><head><title>Index of ");
                         result.append(uri);
                         result.append("</title></head><body><h1>Index of ");
@@ -103,8 +103,8 @@ public class Response {
         body = response;
     }
 
-    public void write(OutputStream os) throws IOException {
-        try (DataOutputStream output = new DataOutputStream(os)) {
+    public void write(OutputStream outputStream) throws IOException {
+        try (DataOutputStream output = new DataOutputStream(outputStream)) {
 			for (String header : headers) {
 				output.writeBytes(header + "\r\n");
 			}
@@ -120,7 +120,7 @@ public class Response {
     private void setContentType(String uri) {
         try {
             String ext = uri.substring(uri.indexOf(".") + 1);
-            headers.add(ContentType.valueOf(ext.toUpperCase()).toString());
+            headers.add(ContentType.of(ext));
         } catch (RuntimeException e) {
             log.error("ContentType not found:", e);
         }

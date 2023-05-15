@@ -1,6 +1,12 @@
 package liteweb.http;
 
-import java.io.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,51 +17,54 @@ import java.util.List;
  */
 public class Request {
 
-	private final List<String> headers = new ArrayList<>();
+	private static final Logger logger = LogManager.getLogger(Request.class);
 
-	private Method method;
+    private final List<String> headers = new ArrayList<>();
 
-	private String uri;
+    private Method method;
 
-	private String version;
+    private String uri;
 
-	public Method getMethod() {
-		return method;
-	}
+    private String version;
 
-	public String getUri() {
-		return uri;
-	}
+    public Method getMethod() {
+        return method;
+    }
 
-	public List<String> getHeaders() {
-		return new ArrayList<>(headers);
-	}
+    public String getUri() {
+        return uri;
+    }
 
-	public Request(InputStream is) throws IOException {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(is))) {
-			String contentLine = reader.readLine();
-			parseRequestLine(contentLine);
+    public List<String> getHeaders() {
+        return new ArrayList<>(headers);
+    }
 
-			while (!"".equals(contentLine)) {
-				contentLine = reader.readLine();
-				addToHeader(contentLine);
-			}
-		}
-	}
+    public Request(InputStream is) throws IOException {
 
-	private void parseRequestLine(String str) {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        String contentLine = reader.readLine();
+        parseRequestLine(contentLine);
 
-		String[] split = str.split("\\s+");
-		try {
-			method = Method.valueOf(split[0]);
-		} catch (RuntimeException e) {
-			method = Method.UNRECOGNIZED;
-		}
-		uri = split[1];
-		version = split[2];
-	}
+        while (!"".equals(contentLine)) {
+            contentLine = reader.readLine();
+            addToHeader(contentLine);
+        }
+    }
 
-	private void addToHeader(String str) {
-		headers.add(str);
-	}
+
+    private void parseRequestLine(String str) {
+		logger.info("request line:", str);
+        String[] split = str.split("\\s+");
+        try {
+            method = Method.valueOf(split[0]);
+        } catch (RuntimeException e) {
+            method = Method.UNRECOGNIZED;
+        }
+        uri = split[1];
+        version = split[2];
+    }
+
+    private void addToHeader(String str) {
+        headers.add(str);
+    }
 }
