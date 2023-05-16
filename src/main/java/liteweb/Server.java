@@ -5,7 +5,9 @@ import liteweb.http.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.TimeUnit;
@@ -15,7 +17,7 @@ public class Server {
     private static final Logger log = LogManager.getLogger(Server.class);
     private static final int DEFAULT_PORT = 8080;
 
-    public static void main(String args[]) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
 
         new Server().startListen(getValidPortParam(args));
     }
@@ -33,8 +35,10 @@ public class Server {
     }
 
     private static void handle(ServerSocket socket) {
-        try (Socket clientSocket = socket.accept()) {
-            Request req = new Request(clientSocket.getInputStream());
+        try (Socket clientSocket = socket.accept();
+             BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
+        ) {
+            Request req = new Request(reader);
             Response res = new Response(req);
             res.write(clientSocket.getOutputStream());
         } catch (IOException e) {

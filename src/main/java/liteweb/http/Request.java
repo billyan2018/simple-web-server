@@ -5,8 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,9 +38,7 @@ public class Request {
         return new ArrayList<>(headers);
     }
 
-    public Request(InputStream is) throws IOException {
-
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+    public Request(BufferedReader reader) throws IOException {
         String contentLine = reader.readLine();
         parseRequestLine(contentLine);
 

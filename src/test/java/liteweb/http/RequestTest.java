@@ -1,28 +1,35 @@
 package liteweb.http;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import org.junit.jupiter.api.Test;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Stream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class RequestTest {
 
-	@Test
-	public void doHeadRequest() throws IOException {
-		Request req = new Request(new ByteArrayInputStream("HEAD / HTTP/1.1\n\n".getBytes()));
-		assertEquals(Method.HEAD, req.getMethod());
-	}
+    @ParameterizedTest
+    @MethodSource("additionProvider")
+    void verifyRequestMethod(String requestHeader, Method expectedMethod) throws Exception {
+        try (InputStream input = new ByteArrayInputStream(requestHeader.getBytes());
+             BufferedReader reader = new BufferedReader(new InputStreamReader(input)
+             )) {
+            Request req = new Request(reader);
+            assertEquals(expectedMethod, req.getMethod());
+        }
+    }
 
-	@Test
-	public void doGetRequest() throws IOException {
-		Request req = new Request(new ByteArrayInputStream("GET / HTTP/1.1\n\n".getBytes()));
-		assertEquals(Method.GET, req.getMethod());
-	}
-
-	@Test
-	public void unknownRequest() throws IOException {
-		Request req = new Request(new ByteArrayInputStream("WHAT / HTTP/1.1\n\n".getBytes()));
-		assertEquals(Method.UNRECOGNIZED, req.getMethod());
-	}
+    static Stream<Arguments> additionProvider() {
+        return Stream.of(
+                Arguments.of("HEAD / HTTP/1.1\n\n", Method.HEAD),
+                Arguments.of("GET / HTTP/1.1\n\n", Method.GET),
+                Arguments.of("WHAT / HTTP/1.1\n\n", Method.UNRECOGNIZED)
+        );
+    }
 }
