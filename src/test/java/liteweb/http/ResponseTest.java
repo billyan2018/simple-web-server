@@ -34,6 +34,8 @@ class ResponseTest {
         return Stream.of(
                 Arguments.of("HEAD / HTTP/1.1\n\n", Status._200),
                 Arguments.of("GET / HTTP/1.1\n\n", Status._200),
+                Arguments.of("GET /index.html HTTP/1.1\n\n", Status._404),
+                Arguments.of("GET /readme.md HTTP/1.1\n\n", Status._200),
                 Arguments.of("WHAT / HTTP/1.1\n\n", Status._400)
         );
     }
