@@ -33,25 +33,10 @@ public class Response {
                     String uri = req.getUri();
                     File file = new File("." + uri);
                     if (file.isDirectory()) {
-                        fillHeaders(Status._200);
-
-                        headers.add(ContentType.HTML.toString());
-                        StringBuilder result = new StringBuilder("<html><head><title>Index of ");
-                        result.append(uri);
-                        result.append("</title></head><body><h1>Index of ");
-                        result.append(uri);
-                        result.append("</h1><hr><pre>");
-
-                        // TODO add Parent Directory
-                        File[] files = file.listFiles();
-                        for (File subfile : files) {
-                            result.append(" <a href=\"" + subfile.getPath() + "\">" + subfile.getPath() + "</a>\n");
-                        }
-                        result.append("<hr></pre></body></html>");
-                        fillResponse(result.toString());
+                        generateResponseForFolder(uri, file);
                     } else if (file.exists()) {
                         fillHeaders(Status._200);
-                        setContentType(req.getUri());
+                        setContentType(uri);
                         fillResponse(getBytes(file));
                     } else {
                         log.info("File not found: %s", req.getUri());
@@ -63,17 +48,31 @@ public class Response {
                     fillHeaders(Status._400);
                     fillResponse(Status._400.toString());
                 }
-
-                break;
-            case UNRECOGNIZED:
-                fillHeaders(Status._400);
-                fillResponse(Status._400.toString());
                 break;
             default:
-                fillHeaders(Status._501);
-                fillResponse(Status._501.toString());
+                fillHeaders(Status._400);
+                fillResponse(Status._400.toString());
         }
 
+    }
+
+    private void generateResponseForFolder(String uri, File file) {
+        fillHeaders(Status._200);
+
+        headers.add(ContentType.of("HTML"));
+        StringBuilder result = new StringBuilder("<html><head><title>Index of ");
+        result.append(uri);
+        result.append("</title></head><body><h1>Index of ");
+        result.append(uri);
+        result.append("</h1><hr><pre>");
+
+        // TODO add Parent Directory
+        File[] files = file.listFiles();
+        for (File subFile : files) {
+            result.append(" <a href=\"" + subFile.getPath() + "\">" + subFile.getPath() + "</a>\n");
+        }
+        result.append("<hr></pre></body></html>");
+        fillResponse(result.toString());
     }
 
     private byte[] getBytes(File file) throws IOException {
@@ -103,8 +102,8 @@ public class Response {
         body = response;
     }
 
-    public void write(OutputStream os) throws IOException {
-        try (DataOutputStream output = new DataOutputStream(os)) {
+    public void write(OutputStream outputStream) throws IOException {
+        try (DataOutputStream output = new DataOutputStream(outputStream)) {
 			for (String header : headers) {
 				output.writeBytes(header + "\r\n");
 			}
@@ -120,7 +119,7 @@ public class Response {
     private void setContentType(String uri) {
         try {
             String ext = uri.substring(uri.indexOf(".") + 1);
-            headers.add(ContentType.valueOf(ext.toUpperCase()).toString());
+            headers.add(ContentType.of(ext));
         } catch (RuntimeException e) {
             log.error("ContentType not found:", e);
         }

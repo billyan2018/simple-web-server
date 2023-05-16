@@ -1,50 +1,39 @@
 package liteweb.http;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * ContentType enum uses the file extension to loosely map the available content type based on common media types:
  * http://en.wikipedia.org/wiki/Internet_media_type
  */
-public enum ContentType {
-	CSS("CSS"), //
-	GIF("GIF"), //
-	HTM("HTM"), //
-	HTML("HTML"), //
-	ICO("ICO"), //
-	JPG("JPG"), //
-	JPEG("JPEG"), //
-	PNG("PNG"), //
-	TXT("TXT"), //
-	XML("XML"); //
+final class ContentType {
+	private static final Map<String, String> EXTENSION_MAP;
 
-	private final String extension;
+	static {
+		Map<String, String> extensions = new HashMap<>();
+		extensions.put("CSS", "Content-Type: text/css");
+		extensions.put("GIF", "Content-Type: image/gif");
+		extensions.put("HTM","Content-Type: text/html");
+		extensions.put("HTML", "Content-Type: text/html");
+		extensions.put("ICO", "Content-Type: image/x-icon");
+		extensions.put("JPG","Content-Type: image/jpeg");
+		extensions.put("JPEG", "Content-Type: image/jpeg");
+		extensions.put("PNG", "Content-Type: image/png");
+		extensions.put("XML", "Content-type: text/xml");
 
-	ContentType(String extension) {
-		this.extension = extension;
+		EXTENSION_MAP = Collections.unmodifiableMap(new HashMap<>());
 	}
+	private ContentType() {
 
-	@Override
-	public String toString() {
-		switch (this) {
-			case CSS:
-				return "Content-Type: text/css";
-			case GIF:
-				return "Content-Type: image/gif";
-			case HTM:
-			case HTML:
-				return "Content-Type: text/html";
-			case ICO:
-				return "Content-Type: image/x-icon";
-			case JPG:
-			case JPEG:
-				return "Content-Type: image/jpeg";
-			case PNG:
-				return "Content-Type: image/png";
-			case TXT:
-				return "Content-type: text/plain";
-			case XML:
-				return "Content-type: text/xml";
-			default:
-				return null;
+	}
+	static String of(String extension) {
+		String defined = EXTENSION_MAP.get(extension.toUpperCase());
+		if (defined != null) {
+			return defined;
+		} else {
+			return "Content-Type: text/html";
 		}
 	}
 }

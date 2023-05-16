@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ServerTest {
 
     @ParameterizedTest
-    @CsvSource({"1234, 1234", "8080, 8080"})
+    @CsvSource({", 8080", "1234, 1234", "8080, 8080"})
     void shouldReturnTrue_whenValid(String value, int port) {
-        String[] args = {value};
+        String[] args =  value == null ? new String[]{} : new String[]{value};
         assertEquals(port, Server.getValidPortParam(args));
     }
 

@@ -29,6 +29,18 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'liteweb.server'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = 'exclude'
+}
+
 test {
     useJUnitPlatform()
 }
