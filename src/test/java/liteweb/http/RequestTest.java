@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Collections;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,12 +18,9 @@ public class RequestTest {
     @ParameterizedTest
     @MethodSource("additionProvider")
     void verifyRequestMethod(String requestHeader, Method expectedMethod) throws Exception {
-        try (InputStream input = new ByteArrayInputStream(requestHeader.getBytes());
-             BufferedReader reader = new BufferedReader(new InputStreamReader(input)
-             )) {
-            Request req = new Request(reader);
+
+            Request req = new Request(Collections.singletonList(requestHeader));
             assertEquals(expectedMethod, req.getMethod());
-        }
     }
 
     static Stream<Arguments> additionProvider() {

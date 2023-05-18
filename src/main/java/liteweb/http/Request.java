@@ -38,13 +38,10 @@ public class Request {
         return new ArrayList<>(headers);
     }
 
-    public Request(BufferedReader reader) throws IOException {
-        String contentLine = reader.readLine();
-        parseRequestLine(contentLine);
-
-        while (!"".equals(contentLine)) {
-            contentLine = reader.readLine();
-            addToHeader(contentLine);
+    public Request(List<String> requests) {
+        parseRequestLine(requests.get(0));
+        for (int i = 1; i < requests.size(); i++) {
+            addToHeader(requests.get(i));
         }
     }
 
