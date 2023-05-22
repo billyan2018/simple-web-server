@@ -4,10 +4,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -19,15 +16,12 @@ class ResponseTest {
     @ParameterizedTest
     @MethodSource("additionProvider")
     void verifyResponseStatus(String requestHeader, Status expectedStatus) throws Exception {
-        try (InputStream input = new ByteArrayInputStream(requestHeader.getBytes());
-             BufferedReader reader = new BufferedReader(new InputStreamReader(input)
-             )) {
-            Request req = new Request(reader);
+
+            Request req = new Request(Collections.singletonList(requestHeader));
             Response res = new Response(req);
             List<String> headers = res.getHeaders();
             assertTrue(headers.size() > 0);
             assertEquals(Response.VERSION + " " + expectedStatus, headers.get(0));
-        }
     }
 
     static Stream<Arguments> additionProvider() {

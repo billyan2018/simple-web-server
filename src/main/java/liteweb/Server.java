@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Server {
@@ -38,7 +40,13 @@ public class Server {
         try (Socket clientSocket = socket.accept();
              BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
         ) {
-            Request req = new Request(reader);
+            List<String> requestContent = new ArrayList<>();
+            String temp = reader.readLine();
+            while(temp != null && temp.length() > 0) {
+                requestContent.add(temp);
+                temp = reader.readLine();
+            }
+            Request req = new Request(requestContent);
             Response res = new Response(req);
             res.write(clientSocket.getOutputStream());
         } catch (IOException e) {

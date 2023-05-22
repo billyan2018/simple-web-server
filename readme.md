@@ -11,3 +11,14 @@ purposes based on W3C specifications (http://www.w3.org/Protocols/):
 * [RFC 2616](http://www.ietf.org/rfc/rfc2616.txt) Hypertext Transfer Protocol -- HTTP/1.1
 * [RFC 2617](http://www.ietf.org/rfc/rfc2617.txt) HTTP Authentication: Basic and Digest Access Authentication
 * [RFC 6265](http://tools.ietf.org/html/rfc6265) HTTP State Management Mechanism (Cookies)
+
+## Build
+```
+./gradlew jar 
+```
+
+## Run
+```
+java -cp build/libs/simple-web-server-1.0.jar liteweb.Server
+```
+

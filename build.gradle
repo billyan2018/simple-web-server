@@ -32,7 +32,7 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'liteweb.server'
+                'Main-Class': 'liteweb.Server'
         )
     }
     from {
