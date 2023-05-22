@@ -42,7 +42,7 @@ public class Server {
         ) {
             List<String> requestContent = new ArrayList<>();
             String temp = reader.readLine();
-            while(temp != null) {
+            while(temp != null && temp.length() > 0) {
                 requestContent.add(temp);
                 temp = reader.readLine();
             }
