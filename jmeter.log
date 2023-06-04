@@ -1,25 +1,25 @@
-2023-06-04 21:33:45,937 INFO o.j.r.PluginManagerCMD: Command is: install-for-jmx
-2023-06-04 21:33:45,952 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\commons-text-1.9.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\commons-text-1.10.0.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-annotations-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-annotations-2.10.5.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-core-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-core-2.10.5.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-databind-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-databind-2.10.5.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\json-smart-2.4.8.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\json-smart-2.3.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jsoup-1.15.3.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jsoup-1.13.1.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\snakeyaml-2.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\snakeyaml-1.21.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xmlgraphics-commons-2.8.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xmlgraphics-commons-2.3.jar
-2023-06-04 21:33:45,953 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xstream-1.4.20.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xstream-1.4.15.jar
-2023-06-04 21:33:46,253 INFO o.j.r.JARSourceHTTP: Found cached repo
-2023-06-04 21:33:46,389 INFO o.j.r.PluginManager: Plugins Status: [jpgc-functions=2.2, jpgc-casutg=2.10, jpgc-dummy=0.4, jpgc-ffw=2.0, jpgc-fifo=0.2, jpgc-json=2.7, jpgc-prmctl=0.4, jpgc-perfmon=2.1, jpgc-plugins-manager=1.7, jpgc-tst=2.5, jmeter-core=5.4.3, jmeter-ftp=5.4.3, jmeter-http=5.4.3, jmeter-jdbc=5.4.3, jmeter-jms=5.4.3, jmeter-junit=5.4.3, jmeter-java=5.4.3, jmeter-ldap=5.4.3, jmeter-mail=5.4.3, jmeter-mongodb=5.4.3, jmeter-native=5.4.3, jmeter-tcp=5.4.3, jmeter-components=5.4.3]
-2023-06-04 21:33:46,390 INFO o.j.r.PluginManagerCMD: Params line is: C:\Users\66454\IdeaProjects\simple-web-server\2023-06-04_21-33-44.594486\modified_requests.jmx
-2023-06-04 21:33:46,519 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
-2023-06-04 21:33:46,527 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
-2023-06-04 21:33:46,530 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
-2023-06-04 21:33:46,548 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
-2023-06-04 21:33:46,549 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
-2023-06-04 21:33:46,560 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
-2023-06-04 21:33:46,626 INFO o.j.r.PluginManager: Finishing without changes
+2023-06-04 21:38:20,612 INFO o.j.r.PluginManagerCMD: Command is: install-for-jmx
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\commons-text-1.9.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\commons-text-1.10.0.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-annotations-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-annotations-2.10.5.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-core-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-core-2.10.5.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-databind-2.15.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jackson-databind-2.10.5.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\json-smart-2.4.8.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\json-smart-2.3.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jsoup-1.15.3.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\jsoup-1.13.1.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\snakeyaml-2.0.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\snakeyaml-1.21.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xmlgraphics-commons-2.8.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xmlgraphics-commons-2.3.jar
+2023-06-04 21:38:20,629 WARN o.j.r.PluginManager: Found JAR conflict: C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xstream-1.4.20.jar and C:\Users\66454\.bzt\jmeter-taurus\5.4.3\lib\xstream-1.4.15.jar
+2023-06-04 21:38:20,931 INFO o.j.r.JARSourceHTTP: Found cached repo
+2023-06-04 21:38:21,071 INFO o.j.r.PluginManager: Plugins Status: [jpgc-functions=2.2, jpgc-casutg=2.10, jpgc-dummy=0.4, jpgc-ffw=2.0, jpgc-fifo=0.2, jpgc-json=2.7, jpgc-prmctl=0.4, jpgc-perfmon=2.1, jpgc-plugins-manager=1.7, jpgc-tst=2.5, jmeter-core=5.4.3, jmeter-ftp=5.4.3, jmeter-http=5.4.3, jmeter-jdbc=5.4.3, jmeter-jms=5.4.3, jmeter-junit=5.4.3, jmeter-java=5.4.3, jmeter-ldap=5.4.3, jmeter-mail=5.4.3, jmeter-mongodb=5.4.3, jmeter-native=5.4.3, jmeter-tcp=5.4.3, jmeter-components=5.4.3]
+2023-06-04 21:38:21,073 INFO o.j.r.PluginManagerCMD: Params line is: C:\Users\66454\IdeaProjects\simple-web-server\2023-06-04_21-38-19.213733\modified_requests.jmx
+2023-06-04 21:38:21,204 INFO o.a.j.s.SaveService: Testplan (JMX) version: 2.2. Testlog (JTL) version: 2.2
+2023-06-04 21:38:21,212 INFO o.a.j.s.SaveService: Using SaveService properties file encoding UTF-8
+2023-06-04 21:38:21,215 INFO o.a.j.s.SaveService: Using SaveService properties version 5.0
+2023-06-04 21:38:21,234 INFO o.a.j.p.h.c.CacheManager: Will only cache the following methods: [GET]
+2023-06-04 21:38:21,236 INFO o.a.j.p.h.c.CookieManager: Settings: Delete null: true Check: true Allow variable: true Save: false Prefix: COOKIE_
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/html is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xhtml+xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for application/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/xml is org.apache.jmeter.protocol.http.parser.LagartoBasedHtmlParser
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/vnd.wap.wml is org.apache.jmeter.protocol.http.parser.RegexpHTMLParser
+2023-06-04 21:38:21,248 INFO o.a.j.p.h.s.HTTPSamplerBase: Parser for text/css is org.apache.jmeter.protocol.http.parser.CssParser
+2023-06-04 21:38:21,316 INFO o.j.r.PluginManager: Finishing without changes
