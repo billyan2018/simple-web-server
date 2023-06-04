@@ -1,0 +1,23 @@
+---
+execution:
+- concurrency: 60
+  hold-for: 1m
+  ramp-up: 10s
+  scenario: simple-web-server
+provisioning: local
+reporting:
+- module: final-stats
+- module: console
+scenarios:
+  simple-web-server:
+    requests:
+    - http://127.0.0.1:8080
+    - http://127.0.0.1:8080/readme.md
+    - http://127.0.0.1:8080/src/main/java/liteweb/Server.java
+    - http://127.0.0.1:8080/readme.md
+    - http://127.0.0.1:8080/performance.yml
+    retrieve-resources: false
+settings:
+  check-interval: 5s
+  default-executor: jmeter
+

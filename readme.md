@@ -27,3 +27,5 @@ java -cp build/libs/simple-web-server-1.0.jar liteweb.Server
 bzt performance.yml
 ```
 
+## Compare
+Please see the `before.log` and `after.log` on the root directory.
