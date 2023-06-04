@@ -29,7 +29,6 @@ public class Response {
                 break;
             case GET:
                 try {
-                    // TODO fix dir bug http://localhost:8080/src/test
                     String uri = req.getUri();
                     File file = new File("." + uri);
                     if (file.isDirectory()) {
@@ -66,13 +65,29 @@ public class Response {
         result.append(uri);
         result.append("</h1><hr><pre>");
 
-        // TODO add Parent Directory
         File[] files = file.listFiles();
+        String parentPath = getParentPath(file);
+        result.append(" <a href=\"").append(parentPath).append("\">").append(parentPath).append("</a>\n");
         for (File subFile : files) {
-            result.append(" <a href=\"" + subFile.getPath() + "\">" + subFile.getPath() + "</a>\n");
+            String subFilePath = getRealPath(subFile.getPath());
+            result.append(" <a href=\"").append(subFilePath).append("\">").append(subFilePath).append("</a>\n");
         }
         result.append("<hr></pre></body></html>");
         fillResponse(result.toString());
+    }
+
+    private String getRealPath(String path) {
+        if (path == null || ".".equals(path)) {
+            return File.separator;
+        }
+        return path.substring(1);
+    }
+
+    private String getParentPath(File file) {
+        if (file == null || file.getPath().equals(".")) {
+            return File.separator;
+        }
+        return getRealPath(file.getParentFile().getPath());
     }
 
     private byte[] getBytes(File file) throws IOException {
@@ -104,16 +119,16 @@ public class Response {
 
     public void write(OutputStream outputStream) throws IOException {
         try (DataOutputStream output = new DataOutputStream(outputStream)) {
-			for (String header : headers) {
-				output.writeBytes(header + "\r\n");
-			}
-			output.writeBytes("\r\n");
-			if (body != null) {
-				output.write(body);
-			}
-			output.writeBytes("\r\n");
-			output.flush();
-		}
+            for (String header : headers) {
+                output.writeBytes(header + "\r\n");
+            }
+            output.writeBytes("\r\n");
+            if (body != null) {
+                output.write(body);
+            }
+            output.writeBytes("\r\n");
+            output.flush();
+        }
     }
 
     private void setContentType(String uri) {
