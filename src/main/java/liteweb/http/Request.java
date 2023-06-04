@@ -44,7 +44,7 @@ public class Request {
 
 
     private void parseRequestLine(String str) {
-		logger.info("request line:", str);
+		logger.info("request line: {}", str);
         String[] split = str.split("\\s+");
         try {
             method = Method.valueOf(split[0]);

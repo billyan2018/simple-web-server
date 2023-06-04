@@ -22,13 +22,13 @@ public class Server {
     private static final BlockingQueue<Socket> ACCEPTED_SOCKET_QUEUE = new ArrayBlockingQueue<>(200);
     private static final ExecutorService RUN_EXEC = Executors.newFixedThreadPool(DEFAULT_RUN_TIME);
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws IOException {
 
         new Server().startListen(getValidPortParam(args));
     }
 
 
-    public void startListen(int port) throws IOException, InterruptedException {
+    public void startListen(int port) throws IOException {
 
         try (ServerSocket socket = new ServerSocket(port)) {
             log.info("Web server listening on port {} (press CTRL-C to quit)", port);
@@ -38,6 +38,7 @@ public class Server {
                 RUN_EXEC.execute(Server::consume);
             }
 
+            // accept
             while (true) {
                 accept(socket);
             }
