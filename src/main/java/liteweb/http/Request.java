@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class Request {
 
-	private static final Logger logger = LogManager.getLogger(Request.class);
+    private static final Logger logger = LogManager.getLogger(Request.class);
 
     private final List<String> headers = new ArrayList<>();
 
@@ -44,7 +44,7 @@ public class Request {
 
 
     private void parseRequestLine(String str) {
-		logger.info("request line:", str);
+        logger.info("request line: {}", str);
         String[] split = str.split("\\s+");
         try {
             method = Method.valueOf(split[0]);

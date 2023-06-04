@@ -39,7 +39,7 @@ public class Response {
                         setContentType(uri);
                         fillResponse(getBytes(file));
                     } else {
-                        log.info("File not found: %s", req.getUri());
+                        log.info("File not found: {}}", req.getUri());
                         fillHeaders(Status._404);
                         fillResponse(Status._404.toString());
                     }
