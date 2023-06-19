@@ -28,4 +28,4 @@ bzt performance.yml
 ```
 
 ## Compare
-Please see the `before.log` and `after.log` on the root directory.
+Please see the `before.log`, `after.log`, and `nio2.log` in the `taurus` folder.
