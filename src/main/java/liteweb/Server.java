@@ -1,6 +1,5 @@
 package liteweb;
 
-import javafx.stage.Stage;
 import liteweb.http.Request;
 import liteweb.http.Response;
 import org.apache.logging.log4j.LogManager;
