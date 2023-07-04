@@ -1,0 +1,64 @@
+20:36:44 INFO: Taurus CLI Tool v1.16.23
+20:36:44 INFO: Starting with configs: ['/home/stone/.bzt-rc', 'performance.yml']
+20:36:44 INFO: Configuring...
+20:36:44 INFO: Proxy settings not set
+20:36:44 INFO: Artifacts dir: /home/stone/Documents/workspace/simple-web-server/2023-07-04_20-36-44.105426
+20:36:44 INFO: Preparing...
+20:36:48 WARNING: Module 'console' can be only used once, will merge all new instances into single
+20:36:48 INFO: Starting...
+20:36:48 INFO: Waiting for results...
+20:36:48 INFO: Waiting for finish...
+20:36:50 WARNING: Failed to check for updates, server returned 5xx.
+20:38:03 WARNING: Please wait for graceful shutdown...
+20:38:03 INFO: Shutting down...
+20:38:03 INFO: Post-processing...
+20:38:03 INFO: Test duration: 0:01:15
+20:38:03 INFO: Samples count: 627176, 0.00% failures
+20:38:03 INFO: Average times: total 0.006, latency 0.006, connect 0.000
+20:38:03 INFO: Percentiles:
++---------------+---------------+
+| Percentile, % | Resp. Time, s |
++---------------+---------------+
+|           0.0 |           0.0 |
+|          50.0 |         0.006 |
+|          90.0 |         0.008 |
+|          95.0 |         0.008 |
+|          99.0 |         0.009 |
+|          99.9 |         0.025 |
+|         100.0 |         0.094 |
++---------------+---------------+
+20:38:03 INFO: Request label stats:
++---------------------------------------------------------+--------+---------+--------+-------+
+| label                                                   | status |    succ | avg_rt | error |
++---------------------------------------------------------+--------+---------+--------+-------+
+| http://127.0.0.1:8080                                   |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/performance.yml                   |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/readme.md                         |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/src/main/java/liteweb/Server.java |   OK   | 100.00% |  0.006 |       |
++---------------------------------------------------------+--------+---------+--------+-------+
+20:38:03 INFO: Test duration: 0:01:15
+20:38:03 INFO: Samples count: 627176, 0.00% failures
+20:38:03 INFO: Average times: total 0.006, latency 0.006, connect 0.000
+20:38:03 INFO: Percentiles:
++---------------+---------------+
+| Percentile, % | Resp. Time, s |
++---------------+---------------+
+|           0.0 |           0.0 |
+|          50.0 |         0.006 |
+|          90.0 |         0.008 |
+|          95.0 |         0.008 |
+|          99.0 |         0.009 |
+|          99.9 |         0.025 |
+|         100.0 |         0.094 |
++---------------+---------------+
+20:38:03 INFO: Request label stats:
++---------------------------------------------------------+--------+---------+--------+-------+
+| label                                                   | status |    succ | avg_rt | error |
++---------------------------------------------------------+--------+---------+--------+-------+
+| http://127.0.0.1:8080                                   |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/performance.yml                   |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/readme.md                         |   OK   | 100.00% |  0.006 |       |
+| http://127.0.0.1:8080/src/main/java/liteweb/Server.java |   OK   | 100.00% |  0.006 |       |
++---------------------------------------------------------+--------+---------+--------+-------+
+20:38:03 INFO: Artifacts dir: /home/stone/Documents/workspace/simple-web-server/2023-07-04_20-36-44.105426
+20:38:03 INFO: Done performing with code: 0

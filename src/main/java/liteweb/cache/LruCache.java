@@ -8,15 +8,15 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.function.Supplier;
 
-public class LruCache<T> {
+public class LruCache<K, V> {
 
     private static final Integer CAPACITY = 3;
 
+    private final Map<K, V> cache = new ConcurrentHashMap<>(CAPACITY);
+    private final Deque<K> deque = new ConcurrentLinkedDeque<>();
     private final CustomizedLock lock = new CustomizedLock();
-    private final Map<String, T> cache = new ConcurrentHashMap<>(CAPACITY);
-    private final Deque<String> deque = new ConcurrentLinkedDeque<>();
 
-    public T putIfAbsent(String key, Supplier<T> supplier) {
+    public V putIfAbsent(K key, Supplier<V> supplier) {
         try {
             lock.lock();
 
@@ -28,7 +28,10 @@ public class LruCache<T> {
                 deque.addFirst(key);
                 if (deque.size() > CAPACITY)
                     cache.remove(key);
-                return cache.put(key, supplier.get());
+
+                V value = supplier.get();
+                cache.put(key, value);
+                return value;
             }
         } finally {
             lock.unlock();

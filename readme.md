@@ -1,4 +1,5 @@
 # Simple Web Server
+
 ![Coverage](.github/badges/jacoco.svg)
 
 ![Branches](.github/badges/branches.svg)
@@ -13,19 +14,32 @@ purposes based on W3C specifications (http://www.w3.org/Protocols/):
 * [RFC 6265](http://tools.ietf.org/html/rfc6265) HTTP State Management Mechanism (Cookies)
 
 ## Build
+
 ```
 ./gradlew jar 
 ```
 
 ## Run
+
 ```
 java -cp build/libs/simple-web-server-1.0.jar liteweb.Server
 ```
 
 ## Performance test
+
 ```
 bzt performance.yml
 ```
 
 ## Compare
-Please see the `before.log`, `after.log`, and `nio2.log` in the `taurus` folder.
+
+Please see the logs in the `taurus` folder.
+
+| Log Name            | Sample Count |
+|---------------------|--------------|
+| LruCache.log        | 627176       |
+| SimpleWebServer.log | 593443       |
+| ~~before.log~~      | ~~27027~~    |
+| ~~after.log~~       | ~~37088~~    |
+| ~~nio2.log~~        | ~~217592~~   |
+
