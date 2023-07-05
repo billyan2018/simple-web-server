@@ -1,5 +1,6 @@
 package liteweb;
 
+import liteweb.cache.LRUCache;
 import liteweb.http.Request;
 import liteweb.http.Response;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,7 @@ public class Server {
 
     private static final Logger log = LogManager.getLogger(Server.class);
     private static final int DEFAULT_PORT = 8080;
+    private static final LRUCache cache = new LRUCache();
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -46,8 +48,14 @@ public class Server {
                 requestContent.add(temp);
                 temp = reader.readLine();
             }
+
             Request req = new Request(requestContent);
-            Response res = new Response(req);
+            Response res = null;
+            if ((res = cache.get(req.getUri())) == null) {
+
+                res = new Response(req);
+                cache.put(req.getUri(),res);
+            }
             res.write(clientSocket.getOutputStream());
         } catch (IOException e) {
             log.error("IO Error", e);
