@@ -5,16 +5,16 @@ import liteweb.http.Request;
 import liteweb.http.Response;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 class LRUCacheTest {
 
     @Test
-    public void testPutItemsAndGetItems() {
+    public void testPutItemsAndGetItems() throws Exception {
         Server s = new Server();
         LRUCache cache = new LRUCache();
         List<String> list = Arrays.asList("GET / HTTP/1.1",

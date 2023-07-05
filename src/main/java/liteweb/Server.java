@@ -38,7 +38,7 @@ public class Server {
         }
     }
 
-    private static void handle(ServerSocket socket) {
+    private static void handle(ServerSocket socket) throws InterruptedException {
         try (Socket clientSocket = socket.accept();
              BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
         ) {
