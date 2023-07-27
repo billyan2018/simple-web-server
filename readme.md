@@ -18,7 +18,8 @@ purposes based on W3C specifications (http://www.w3.org/Protocols/):
 ```
 
 ## Run
-```
+
+```bash=
 java -cp build/libs/simple-web-server-1.0.jar liteweb.Server
 ```
 
