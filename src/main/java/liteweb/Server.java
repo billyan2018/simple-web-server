@@ -1,5 +1,6 @@
 package liteweb;
 
+import liteweb.cache.LRUCache;
 import liteweb.http.Request;
 import liteweb.http.Response;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,7 @@ public class Server {
 
     private static final Logger log = LogManager.getLogger(Server.class);
     private static final int DEFAULT_PORT = 8080;
+    private static final LRUCache cache = new LRUCache();
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
@@ -27,7 +29,7 @@ public class Server {
 
     public void startListen(int port) throws IOException, InterruptedException {
 
-        try (ServerSocket socket = new ServerSocket(port)) {
+        try (ServerSocket socket = new ServerSocket(port,60)) {
             log.info("Web server listening on port %d (press CTRL-C to quit)", port);
             while (true) {
                 TimeUnit.MILLISECONDS.sleep(1);
@@ -36,7 +38,7 @@ public class Server {
         }
     }
 
-    private static void handle(ServerSocket socket) {
+    private static void handle(ServerSocket socket) throws InterruptedException {
         try (Socket clientSocket = socket.accept();
              BufferedReader reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()))
         ) {
@@ -46,8 +48,14 @@ public class Server {
                 requestContent.add(temp);
                 temp = reader.readLine();
             }
+
             Request req = new Request(requestContent);
-            Response res = new Response(req);
+            Response res = null;
+            if ((res = cache.get(req.getUri())) == null) {
+
+                res = new Response(req);
+                cache.put(req.getUri(),res);
+            }
             res.write(clientSocket.getOutputStream());
         } catch (IOException e) {
             log.error("IO Error", e);
